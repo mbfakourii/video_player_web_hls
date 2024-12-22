@@ -82,6 +82,8 @@ class VideoPlayer {
       ..controls = false
       ..playsInline = true;
 
+    _hlsFallback = true;
+
     if (_hlsFallback == true || await shouldUseHlsLibrary()) {
       _hlsFallback = false;
       try {
@@ -126,7 +128,7 @@ class VideoPlayer {
               }
             }.toJS);
         _eventsSubscriptions.add(_videoElement.onCanPlay.listen((dynamic _) {
-          _onVideoElementInitialization(_) ;
+          _onVideoElementInitialization(_);
           setBuffering(false);
         }));
       } catch (e) {
